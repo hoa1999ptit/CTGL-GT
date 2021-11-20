@@ -14,4 +14,13 @@
 
 
 # Danh sách các bài tập contest PTIT
-    1. 
+    1. DSLK đơn
+    2. Sinh kế tiếp
+    3. Quay lui - Nhánh cận
+    4. Giải thuật tham lam
+    5. Chia để trị
+    6. Quy hoạch động
+    7. Sắp xếp - Tìm kiếm
+    8. Ngăn Xếp - Hàng đợi
+    9. Đồ thị
+    10. Cây nhị phân
