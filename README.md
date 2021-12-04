@@ -44,6 +44,11 @@
 	+	Rơi vào tình trạng "thrashing": qúa trình tìm kiếm cứ gặp phải bế tắc với cùng một nguyên nhân.
 	+	Thực hiện các công việc dư thừa: Mỗi lần chúng ta quay lui, chúng ta cần phải đánh giá lại lời giải trong khi đôi lúc điều đó không cần thiết.
 	+	Không sớm phát hiện được các khả năng bị bế tắc trong tương lai. Quay lui chuẩn, không có cơ chế nhìn về tương lai để nhận biết đc nhánh tìm kiếm sẽ đi vào bế tắc.
+### Quy hoạch động
+1. Giới thiệu
+-	QHĐ là kĩ thuật được được dùng khi có một công thức và một (hoặc một vài) trạng thái bắt đầu. Một bài toán được tính bởi các bài toán nhỏ hơn đã tìm ra trước đó. QHĐ có độ phức tạp đa thức nên sẽ chạy nhanh hơn quay lui và duyệt trâu.
+3. Thuật toán
+4. Nhận xét
 # Danh sách các bài tập contest PTIT
     1. DSLK đơn
     2. Sinh kế tiếp
