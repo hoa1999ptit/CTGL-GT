@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class DSA05012_ToHop {
 
-    static int c[][];
+    static int[][] c = new int[1005][1005];
     static int mod = (int) 1e9 + 7;
 
     public static void main(String[] args) {
@@ -35,6 +35,20 @@ public class DSA05012_ToHop {
             System.out.println(c[n][k]);
         }
     }
+
+//    static void khoitaomang() {
+//        int i, j;
+//        for (i = 0; i < 1005; i++) {
+//            for (j = 0; j <= i; j++) {
+//                if (j == 1 || i == j) {
+//                    c[i][j] = 1;
+//
+//                } else {
+//                    c[i][j] = (c[i - 1][j] + c[i - 1][j - 1]) % mod;
+//                }
+//            }
+//        }
+//    }
 }
 /*
 2
