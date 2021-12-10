@@ -22,7 +22,6 @@ public class DSAKT110_NhaKhongKeNhau {
         int t = in.nextInt();
 
         while (t-- > 0) {
-
             n = in.nextInt();
             a = new int[n];
             for (int i = 0; i < n; i++) {
