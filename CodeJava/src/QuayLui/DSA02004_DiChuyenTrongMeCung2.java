@@ -13,111 +13,63 @@ import java.util.*;
  */
 public class DSA02004_DiChuyenTrongMeCung2 {
 
-    static Vector<String> possiblePaths = new Vector<>();
-    static String path = "";
-    static final int MAX = 5;
+    static int n;
+    static int[][] matrix = new int[100][100];
+    static boolean[][] check = new boolean[100][100];
+    static ArrayList<String> result = new ArrayList<>();
 
-    static boolean isSafe(int row, int col, int m[][],
-            int n, boolean visited[][]) {
-        if (row == -1 || row == n || col == -1
-                || col == n || visited[row][col]
-                || m[row][col] == 0) {
-            return false;
-        }
-
-        return true;
-    }
-
-    static void printPathUtil(int row, int col, int m[][],
-            int n, boolean visited[][]) {
-
-        // This will check the initial point
-        // (i.e. (0, 0)) to start the paths.
-        if (row == -1 || row == n || col == -1
-                || col == n || visited[row][col]
-                || m[row][col] == 0) {
+    static void solve(int i, int j, String str) {
+        if (matrix[1][1] == 0 || matrix[n][n] == 0) {
             return;
         }
-
-        // If reach the last cell (n-1, n-1)
-        // then store the path and return
-        if (row == n - 1 && col == n - 1) {
-            possiblePaths.add(path);
-            return;
+        if (i == n & j == n) {
+            result.add(str);
         }
-
-        // Mark the cell as visited
-        visited[row][col] = true;
-
-        // Try for all the 4 directions (down, left,
-        // right, up) in the given order to get the
-        // paths in lexicographical order
-        // Check if downward move is valid
-        if (isSafe(row + 1, col, m, n, visited)) {
-            path += 'D';
-            printPathUtil(row + 1, col, m, n,
-                    visited);
-            path = path.substring(0, path.length() - 1);
+        if (matrix[i + 1][j] == 1 && i != n && !check[i + 1][j]) {
+            check[i][j] = true;
+            solve(i + 1, j, str + "D");
+            check[i][j] = false;
         }
-
-        // Check if the left move is valid
-        if (isSafe(row, col - 1, m, n, visited)) {
-            path += 'L';
-            printPathUtil(row, col - 1, m, n,
-                    visited);
-            path = path.substring(0, path.length() - 1);
+        if (matrix[i][j + 1] == 1 && j != n && !check[i][j + 1]) {
+            check[i][j] = true;
+            solve(i, j + 1, str + "R");
+            check[i][j] = false;
         }
-
-        // Check if the right move is valid
-        if (isSafe(row, col + 1, m, n, visited)) {
-            path += 'R';
-            printPathUtil(row, col + 1, m, n,
-                    visited);
-            path = path.substring(0, path.length() - 1);
+        if (matrix[i - 1][j] == 1 && i != 1 && !check[i - 1][j]) {
+            check[i][j] = true;
+            solve(i - 1, j, str + "U");
+            check[i][j] = false;
         }
-
-        // Check if the upper move is valid
-        if (isSafe(row - 1, col, m, n, visited)) {
-            path += 'U';
-            printPathUtil(row - 1, col, m, n,
-                    visited);
-            path = path.substring(0, path.length() - 1);
-        }
-
-        // Mark the cell as unvisited for
-        // other possible paths
-        visited[row][col] = false;
-    }
-
-    static void printPath(int m[][], int n) {
-        boolean[][] visited = new boolean[n][MAX];
-
-        // Call the utility function to
-        // find the valid paths
-        printPathUtil(0, 0, m, n, visited);
-
-        // Print all possible paths
-        for (int i = 0; i < possiblePaths.size(); i++) {
-            System.out.print(possiblePaths.get(i) + " ");
+        if (matrix[i][j - 1] == 1 && j != 1 && !check[i][j - 1]) {
+            check[i][j] = true;
+            solve(i, j - 1, str + "L");
+            check[i][j] = false;
         }
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int t = in.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
         while (t-- > 0) {
-            int n = in.nextInt();
-
-            int[][] m = new int[n][n];
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    m[i][j] = in.nextInt();
+            result.clear();
+            n = sc.nextInt();
+            for (int i = 1; i <= n; i++) {
+                for (int j = 1; j <= n; j++) {
+                    matrix[i][j] = sc.nextInt();
+                    check[i][j] = false;
                 }
             }
-            printPath(m, n);
+            solve(1, 1, "");
+            if (result.size() == 0) {
+                System.out.print(-1);
+            } else {
+                Collections.sort(result);
+                for (int i = 0; i < result.size(); i++) {
+                    System.out.print(result.get(i) + " ");
+                }
+            }
             System.out.println();
         }
-
     }
 }
 /*
